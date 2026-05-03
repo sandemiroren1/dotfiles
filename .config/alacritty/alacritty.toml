@@ -1,0 +1,9 @@
+general.import = [
+  "~/.config/alacritty/catppuccin-mocha.toml"
+]
+[env]
+TERM = "xterm-256color"
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\x1b\r"
