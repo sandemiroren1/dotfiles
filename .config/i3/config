@@ -15,12 +15,12 @@ set $mod Mod4
 # set $mod Mod1
 bindsym mod+q exec i3-msg set layout us
 exec --no-startup-id picom
-exec_always --no-startup-id feh --bg-scale /home/bigfatchungus69/Pictures/wallpaper.jpg
 # exec --no-startup-id feh --bg-scale ~/backgrounds/nice-blue-background.png
-exec_always --no-startup-id killall -q polybar; polybar --config=~/.config/polybar/config.ini toph &
 exec --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
-
+### Autostart
+exec_always --no-startup-id ~/.config/polybar/launch.sh --forest
+exec_always autotiling -w 1 2 3 4 5 6 7 8 9
 # kill any hanging polybar processes
 # exec_always killall polybar
 # exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
@@ -53,7 +53,15 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# set desktop background with custom effect
+# set desktop background with custom effect
+exec --no-startup-id betterlockscreen -w dim
 
+# Alternative (set last used background)
+exec --no-startup-id source ~/.fehbg
+
+# # Alternative (set last used background)
+# exec --no-startup-id source ~/.fehbg
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -74,15 +82,18 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec alacritty
-
+bindsym $mod+shift+x exec betterlockscreen -l dim
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym --release $mod+Shift+s exec gnome-screenshot -i
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
-bindsym $mod+space exec --no-startup-id rofi -show combi
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+# bindsym $mod+d exec --no-startup-id rofi -show drun
+# bindsym $mod+space exec --no-startup-id rofi -show combi
+# bindsym $mod+Tab exec --no-startup-id rofi -show window
+set $mod Mod4
 
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-2/launcher.sh
+bindsym $mod+x exec --no-startup-id powermenu_t2
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -198,40 +209,23 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $yellow    #f9e2af
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+set_from_resource $wal_bg     background #1b070f
+set_from_resource $wal_fg     foreground #899dba
+set_from_resource $wal_color1 color1     #5C4556
+set_from_resource $wal_color2 color2     #981B18
+set_from_resource $wal_color3 color3     #D02611
+set_from_resource $wal_color4 color4     #F64600
+set_from_resource $wal_color5 color5     #E95B10
+set_from_resource $wal_color6 color6     #FDCD02
+set_from_resource $wal_color8 color8     #5f6d82
 
-# target                 title     bg    text      indicator    border
-client.focused           $mantle   $red   $mantle  $rosewater $red
-client.focused_inactive  $overlay0 $base  $text    $rosewater $overlay0
-client.unfocused         $overlay0 $base  $text    $rosewater $overlay0
-client.urgent            $peach    $base  $peach   $overlay0  $peach
-client.placeholder       $overlay0 $base  $text    $overlay0  $overlay0
-client.background        $base
+# target                 title       bg          text        indicator    border
+client.focused           $wal_bg     $wal_color4 $wal_fg     $wal_color5  $wal_color4
+client.focused_inactive  $wal_bg     $wal_bg     $wal_color8 $wal_color8  $wal_color8
+client.unfocused         $wal_bg     $wal_bg     $wal_color8 $wal_color8  $wal_color8
+client.urgent            $wal_color1 $wal_color1 $wal_fg     $wal_color1  $wal_color1
+client.placeholder       $wal_bg     $wal_bg     $wal_fg     $wal_bg      $wal_bg
+client.background        $wal_bg
 
 # exec_always --no-startup-id killall -q polybar
 # Set wallpaper
