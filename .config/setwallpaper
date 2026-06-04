@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Usage: setwallpaper /path/to/image
+
+if [[ -z "$1" ]]; then
+    echo "Usage: setwallpaper <image>"
+    exit 1
+fi
+
+# Clear cached scheme for this image so wal regenerates
+img_cache=$(echo "$1" | sed 's|/|_|g; s|\.|_|g')
+rm -f ~/.cache/wal/schemes/${img_cache}*.json
+
+wal -i "$1"
+xrdb -merge ~/.cache/wal/colors.Xresources
+~/.config/polybar/launch.sh --forest &
+i3-msg reload
