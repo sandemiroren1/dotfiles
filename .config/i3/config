@@ -92,7 +92,7 @@ bindsym --release $mod+Shift+s exec gnome-screenshot -i
 # bindsym $mod+Tab exec --no-startup-id rofi -show window
 set $mod Mod4
 
-bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/type-2/launcher.sh
+bindsym $mod+d exec --no-startup-id ~/.config/polybar/forest/scripts/launcher.sh
 bindsym $mod+x exec --no-startup-id powermenu_t2
 # change focus
 bindsym $mod+h focus left
