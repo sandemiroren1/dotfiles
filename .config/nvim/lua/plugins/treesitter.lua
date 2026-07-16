@@ -5,6 +5,8 @@ return {
       "tsx",
       "typescript",
       "svelte",
+      "rust",
+      "ron",
     })
   end,
 }

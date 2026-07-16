@@ -9,7 +9,12 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 3
+# gaps
+gaps inner 10
+gaps outer 5
+smart_gaps on
+smart_borders on
 exec_always setxkbmap us
 set $mod Mod4
 # set $mod Mod1
@@ -52,10 +57,11 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dim
 # set desktop background with custom effect
 # set desktop background with custom effect
-exec --no-startup-id betterlockscreen -w dim
+# replaced by qylock quickshell lockscreen; wallpaper is set by ~/.fehbg below
+# exec --no-startup-id betterlockscreen -w dim
 
 # Alternative (set last used background)
 exec --no-startup-id source ~/.fehbg
@@ -81,8 +87,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-bindsym $mod+shift+x exec betterlockscreen -l dim
+bindsym $mod+Return exec ghostty
+bindsym $mod+Shift+f exec ghostty -e yazi
+bindsym $mod+shift+x exec --no-startup-id betterlockscreen -l dim
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym --release $mod+Shift+s exec gnome-screenshot -i
@@ -94,6 +101,10 @@ set $mod Mod4
 
 bindsym $mod+d exec --no-startup-id ~/.config/polybar/forest/scripts/launcher.sh
 bindsym $mod+x exec --no-startup-id powermenu_t2
+# wifi settings (nmtui in a terminal)
+bindsym $mod+n exec --no-startup-id ghostty -e  nmtui
+# bluetooth manager
+bindsym $mod+Shift+b exec ghostty -e bluetui
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down

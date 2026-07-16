@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-neofetch
+fastfetch --logo none
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -118,3 +118,14 @@ export LDFLAGS="-stdlib=libc++"
 
 # Rust/Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# C++ stuff
+export CC=clang
+export CXX=clang++
+# adds vcpkg
+export VCPKG_ROOT="$HOME/vcpkg"
+export PATH="VCPKG_ROOT:$PATH"

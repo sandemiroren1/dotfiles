@@ -3,6 +3,8 @@ return {
   opts = {
     ensure_installed = {
       "typescript-language-server",
+      "bacon",
+      "codelldb",
       "kotlin-lsp",
       "svelte-language-server",
       "prettier",

@@ -2,8 +2,8 @@
 # Usage: setwallpaper /path/to/image
 
 if [[ -z "$1" ]]; then
-    echo "Usage: setwallpaper <image>"
-    exit 1
+  echo "Usage: setwallpaper <image>"
+  exit 1
 fi
 
 # Clear cached scheme for this image so wal regenerates
@@ -12,5 +12,11 @@ rm -f ~/.cache/wal/schemes/${img_cache}*.json
 
 wal -i "$1"
 xrdb -merge ~/.cache/wal/colors.Xresources
+
+mkdir -p ~/.local/share/color-schemes
+cp ~/.cache/wal/wal.colors ~/.local/share/color-schemes/Wal.colors
+plasma-apply-colorscheme BreezeDark >/dev/null 2>&1
+plasma-apply-colorscheme Wal
+
 ~/.config/polybar/launch.sh --forest &
 i3-msg reload

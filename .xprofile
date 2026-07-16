@@ -1,0 +1,3 @@
+# sourced by the display manager at X login
+# make Qt/KDE apps (dolphin, etc.) follow the kdeglobals color scheme
+export QT_QPA_PLATFORMTHEME=kde

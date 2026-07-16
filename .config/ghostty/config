@@ -1,0 +1,14 @@
+
+config-file = ?~/.cache/wal/ghostty-colors
+
+term = xterm-256color
+
+
+background-opacity = 0.8
+background-opacity-cells = true
+
+keybind = shift+enter=text:\x1b\r
+
+window-decoration = none
+
+confirm-close-surface = false
